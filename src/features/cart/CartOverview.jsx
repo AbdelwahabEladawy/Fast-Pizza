@@ -4,7 +4,7 @@ import { TotalPizzaQuantity, TotalPriceOfCart } from "./cartSlice";
 import { formatCurrency } from "../../utils/helpers";
 
 function CartOverview() {
-  const totalQuantity = useSelector(TotalPizzaQuantity);
+   const totalQuantity = useSelector(TotalPizzaQuantity);
   const totalCartPrice=useSelector(TotalPriceOfCart)
   if(!totalQuantity) return null  
 
@@ -20,5 +20,6 @@ function CartOverview() {
     </div>
   );
 }
+
 
 export default CartOverview;

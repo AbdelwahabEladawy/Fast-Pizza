@@ -3,14 +3,14 @@ import Button from "../../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, getCurrentQuantityByID } from "../cart/cartSlice";
 import DeleteItem from "../cart/DeleteItem";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const dispatch = useDispatch();
 
-const currentQuantity=useSelector(getCurrentQuantityByID(id))
-const  isInCart=currentQuantity>0;
-
+  const currentQuantity = useSelector(getCurrentQuantityByID(id));
+  const isInCart = currentQuantity > 0;
 
   function handleAddItem() {
     // console.log(id);
@@ -20,9 +20,9 @@ const  isInCart=currentQuantity>0;
       name,
       quantity: 1,
       unitPrice,
-      totalPrice: unitPrice*1,
+      totalPrice: unitPrice * 1,
     };
-    dispatch(addItem(newItem))
+    dispatch(addItem(newItem));
   }
 
   return (
@@ -45,12 +45,19 @@ const  isInCart=currentQuantity>0;
               Sold out
             </p>
           )}
-{isInCart&&<DeleteItem  pizzaId={id}/>
-}
+          {isInCart && (
+            
+              <div className="flex items-center gap-3 sm:gap-8">
+                <UpdateItemQuantity
+                  pizzaId={id}
+                  currentQuantity={currentQuantity}
+                />
+                <DeleteItem pizzaId={id} />
+              </div>
+            
+          )}
 
-
-
-          {!soldOut && !isInCart&& (
+          {!soldOut && !isInCart && (
             <Button onClick={handleAddItem} type="small">
               Add to cart
             </Button>
