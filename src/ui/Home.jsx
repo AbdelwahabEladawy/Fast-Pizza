@@ -17,7 +17,7 @@ function Home() {
       ) : (
         <Button to="/menu" type="primary">
           {" "}
-          continue Ordering
+          place a new Order
         </Button>
       )}
     </div>
